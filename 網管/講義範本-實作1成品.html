@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>§實作１ 模板</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+		 crossorigin="anonymous">
+		<meta charset="utf-8" >
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<!-- 狀態 -->
+		<div id="status" class="alert alert-info">狀態</div>
+		<div id="special" class="alert alert-primary" style="display: none;">
+			
+		</div>
+		<input type="password" id="pwd" class="form-control" placeholder="輸入密碼">
+		<br>
+		<button class="btn btn-success">驗證密碼</button>
+		
+		
+		<script type="text/javascript">
+			//請在這裡寫程式
+			const PASSWORD = "123456"
+			const PRIVATE_WORDS = "你好，歡迎學習JavaScript"
+			var errorTimes = 0;
+			document.getElementsByTagName("button")[0].addEventListener("click",function(){
+				var elemPwd = document.getElementById("pwd")
+				if(elemPwd.value != PASSWORD)errorTimes++;
+				
+				if(errorTimes >3){
+					document.getElementById("pwd").setAttribute("disabled",true)
+					document.getElementById("status").innerText = "你已經輸錯"+errorTimes+"次密碼不能再試了!"
+					
+					document.getElementById("status").classList.remove("alert-info")
+					document.getElementById("status").classList.remove("alert-success")
+					document.getElementById("status").classList.remove("alert-danger")
+					
+					document.getElementById("status").classList.add("alert-danger")
+				}else if(elemPwd.value == PASSWORD){
+					document.getElementById("status").innerText = "通關！"
+					document.getElementById("special").innerText = PRIVATE_WORDS
+					document.getElementById("special").style.display = "block"
+					
+					document.getElementById("status").classList.remove("alert-info")
+					document.getElementById("status").classList.remove("alert-success")
+					document.getElementById("status").classList.remove("alert-danger")
+					
+					document.getElementById("status").classList.add("alert-success")
+				}else{
+					document.getElementById("status").innerText = "密碼錯誤！(已經第"+errorTimes+"次了)"
+					
+					document.getElementById("status").classList.remove("alert-info")
+					document.getElementById("status").classList.remove("alert-success")
+					document.getElementById("status").classList.remove("alert-danger")
+					
+					document.getElementById("status").classList.add("alert-danger")
+				}
+			})
+		</script>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	</body>
+</html>
