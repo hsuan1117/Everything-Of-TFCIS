@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>實作2 模板</title>
+    <meta charset="utf-8" >
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="panel">
+        <div id="Head"></div>
+        <div style="width:50px;height:100px;float:left;"></div>
+        <div id="intro">
+            <p>歡迎來到歹丸</p>
+            <p>我們僅接受我們<b>喜歡</b>的人</p>
+			<p id="now"></p>
+        </div>
+    </div>
+
+    <script>
+        //程式寫在這
+		function getRandom(min,max){
+		    return Math.floor(Math.random()*(max-min+1))+min;
+		};
+		var availableColor = [
+			"red",
+			"blue",
+			"green",
+			"yellow",
+			"white"
+		]
+		var cango = [
+			"green",
+			"white"
+		]
+		var i = 0,timer;
+		var choosed = availableColor[getRandom(0,availableColor.length)]
+		document.addEventListener("DOMContentLoaded",function(){
+			document.getElementById("Head").style.backgroundColor = choosed
+			document.getElementById("now").innerText = `自進入已經過${i}秒`
+			timer = setInterval(function(){
+				i++;
+				if(i >= 14){
+					clearInterval(timer)
+					if(cango.includes(choosed)){
+						window.alert("OK，你可以通過了！")
+						location.href = "https://github.com/hsuan1117/"
+					}else{
+						window.alert("你不可以通過！你顏色不對")
+						location.reload()
+					}
+				}
+				document.getElementById("now").innerText = `自進入已經過${i}秒`
+			},1000)
+		})
+		
+    </script>
+    <style>
+        #Head {
+            border-radius: 50%;
+            background-image: url('https://cdn.jsdelivr.net/gh/hsuan1117/Everything-Of-TFCIS@master/網管/7174C90B-CD61-453B-AB5C-687455B85B05-removebg-preview.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 20vw;
+            height: 20vw;
+            background-color: red;
+            float: left;
+        }
+
+        #panel {}
+
+        #intro {
+            float: left;
+        }
+    </style>
+</body>
+
+</html>
