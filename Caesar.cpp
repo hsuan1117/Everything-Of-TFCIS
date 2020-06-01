@@ -7,7 +7,7 @@ int main(){
   for(int i=1;i<100;i++){
     for(auto x : text){
       if(int(x)+i > 127)
-        res += char(int(x)+i);
+        res += char(int(x)+i-127);
       else
         res += char(int(x)+i);
     }
